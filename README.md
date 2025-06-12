@@ -6,9 +6,11 @@ Estimate combination weights in synthetic control methods by relaxed balancing a
 
 This python package implements the SCM-relaxation estimator for synthetic control in
 
-Liao, Shi and Zheng (2025): "Relaxed balancing for synthetic control"
+- Liao, Shi and Zheng (2025): "Relaxed balancing for synthetic control"
 
 The current package is sufficient to replicate all numerical results in the paper. 
+
+Documentation is provided [here]().
 ## Installation
 
 ```bash
@@ -17,16 +19,37 @@ $ pip install scmrelax
 
 ## Usage
 
-- TODO
+The main function of this package is `scmrelax.fit`. It estimate weights using different relaxation methods including empirical likelihood relaxation, entropy relaxation and L2 relaxation.
 
-## Contributing
+Here's a step-by-step example demonstrating the usage of the `scmrelax` package:
 
-Interested in contributing? Check out the contributing guidelines. Please note that this project is released with a Code of Conduct. By contributing to this project, you agree to abide by its terms.
+```
+import numpy as np
+import scmrelax
+
+# Pre-treatment data (control units)
+X_pre = np.array([[1.2, 3.4, 5.6],
+                  [2.3, 4.5, 6.7],
+                  [3.1, 5.4, 7.8]])
+
+# Pre-treatment target data (treated unit)
+y_pre = np.array([2.5, 3.7, 4.1])
+
+# Post-treatment data (control units)
+X = np.array([[1.5, 3.8, 6.1],
+              [2.7, 4.9, 7.2]])
+
+# Fit the models and get results
+results = scmrelax.fit(X_pre, y_pre, X)
+
+# Print results
+for method, res in results.items():
+    print(f"{method} weights:", res['weights'])
+    print(f"{method} predictions:", res['predictions'])
+```       
 
 ## License
 
-`scmrelax` was created by Chengwang Liao, Ji Pan, Yapeng Zheng. It is licensed under the terms of the MIT license.
+`scmrelax` is contributed by [Chengwang Liao](https://github.com/cwleo), [Ji Pan](https://github.com/PanJi-0), [Yapeng Zheng](https://github.com/YapengZheng). 
 
-## Credits
-
-`scmrelax` was created with [`cookiecutter`](https://cookiecutter.readthedocs.io/en/latest/) and the `py-pkgs-cookiecutter` [template](https://github.com/py-pkgs/py-pkgs-cookiecutter).
+It is licensed under the terms of the MIT license.

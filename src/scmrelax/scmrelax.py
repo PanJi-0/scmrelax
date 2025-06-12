@@ -290,16 +290,19 @@ def fit(X_pre, y_pre, X):
     """
     Estimate weights using different relaxation methods.
 
+    This function applies multiple relaxation methods (e.g., synthetic control, L2 relaxation,
+    entropy relaxation, and empirical likelihood relaxation) to estimate weights and make predictions.
+
     Parameters
     ----------
     X_pre : ndarray of shape (n_pre_samples, n_features)
-        Pre-treatment input data matrix.
+        Pre-treatment input data matrix (control units).
 
     y_pre : ndarray of shape (n_pre_samples,)
-        Pre-treatment target values.
+        Pre-treatment target values (treated unit).
 
     X : ndarray of shape (n_samples, n_features)
-        Post-treatment input data matrix.
+        Post-treatment input data matrix (control units).
 
     Returns
     -------
@@ -309,6 +312,36 @@ def fit(X_pre, y_pre, X):
         - 'EL': Empirical likelihood relaxation.
         - 'entropy': Entropy relaxation.
         - 'l2': L2 relaxation.
+        Each key contains:
+            - 'weights': ndarray of shape (n_features,)
+                Estimated weights for control units.
+            - 'predictions': ndarray of shape (n_samples,)
+                Predicted post-treatment target values.
+
+    Example
+    -------
+    >>> import numpy as np
+    >>> from scmrelax.scmrelax import fit
+
+    >>> # Pre-treatment data (control units)
+    >>> X_pre = np.array([[1.2, 3.4, 5.6],
+    ...                   [2.3, 4.5, 6.7],
+    ...                   [3.1, 5.4, 7.8]])
+
+    >>> # Pre-treatment target data (treated unit)
+    >>> y_pre = np.array([2.5, 3.7, 4.1])
+
+    >>> # Post-treatment data (control units)
+    >>> X = np.array([[1.5, 3.8, 6.1],
+    ...               [2.7, 4.9, 7.2]])
+
+    >>> # Fit the models and get results
+    >>> results = fit(X_pre, y_pre, X)
+
+    >>> # Print results
+    >>> for method, res in results.items():
+    ...     print(f"{method} weights:", res['weights'])
+    ...     print(f"{method} predictions:", res['predictions'])
     """
     results = {}
     
