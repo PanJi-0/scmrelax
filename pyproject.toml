@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "scmrelax"
+version = "0.1.0"
+description = "Estimate combination weights in synthetic control methods by relaxed balancing approaches, including L2, EL and Entropy-SCM-Relaxation."
+authors = ["Chengwang Liao, Ji Pan, Yapeng Zheng"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^.8"
+
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
