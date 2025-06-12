@@ -287,7 +287,29 @@ def synthetic_control(X, y):
 
 ## Weight Estimation Using Different Methods
 def fit(X_pre, y_pre, X):
-    """Estimate weights using different methods."""
+    """
+    Estimate weights using different relaxation methods.
+
+    Parameters
+    ----------
+    X_pre : ndarray of shape (n_pre_samples, n_features)
+        Pre-treatment input data matrix.
+
+    y_pre : ndarray of shape (n_pre_samples,)
+        Pre-treatment target values.
+
+    X : ndarray of shape (n_samples, n_features)
+        Post-treatment input data matrix.
+
+    Returns
+    -------
+    dict
+        Dictionary containing the estimated weights and predictions for each method:
+        - 'scm': Synthetic control method.
+        - 'EL': Exponentially Logarithmic relaxation.
+        - 'entropy': Entropy relaxation.
+        - 'l2': L2 relaxation.
+    """
     results = {}
     
     # SCM weights
