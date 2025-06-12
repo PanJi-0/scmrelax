@@ -306,7 +306,7 @@ def fit(X_pre, y_pre, X):
     dict
         Dictionary containing the estimated weights and predictions for each method:
         - 'scm': Synthetic control method.
-        - 'EL': Exponentially Logarithmic relaxation.
+        - 'EL': Empirical likelihood relaxation.
         - 'entropy': Entropy relaxation.
         - 'l2': L2 relaxation.
     """
