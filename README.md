@@ -2,6 +2,13 @@
 
 Estimate combination weights in synthetic control methods by relaxed balancing approaches, including L2, EL and Entropy-SCM-Relaxation.
 
+## Introduction
+
+This python package implements the SCM-relaxation estimator for synthetic control in
+
+Liao, Shi and Zheng (2025): "Relaxed balancing for synthetic control"
+
+The current package is sufficient to replicate all numerical results in the paper. 
 ## Installation
 
 ```bash
