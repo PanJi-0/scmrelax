@@ -286,7 +286,7 @@ def synthetic_control(X, y):
     return w.value
 
 ## Weight Estimation Using Different Methods
-def estimate_weights(X_pre, y_pre, X):
+def fit(X_pre, y_pre, X):
     """Estimate weights using different methods."""
     results = {}
     
