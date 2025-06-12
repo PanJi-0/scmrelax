@@ -8,7 +8,7 @@ This python package implements the SCM-relaxation estimator for synthetic contro
 
 - Liao, Shi and Zheng (2025): "Relaxed balancing for synthetic control"
 
-The current package is sufficient to replicate all numerical results in the paper. 
+The current package is sufficient to replicate all empirical results in the paper. 
 
 Documentation is provided [here]().
 ## Installation
@@ -19,7 +19,7 @@ $ pip install scmrelax
 
 ## Usage
 
-The main function of this package is `scmrelax.fit`. It estimate weights using different relaxation methods including empirical likelihood relaxation, entropy relaxation and L2 relaxation.
+The main function of this package is `scmrelax.fit`. It estimates weights using different relaxation methods including empirical likelihood relaxation, entropy relaxation and L2 relaxation. It also provides weights estimated by standard synthetic control; see Abadie, Alberto, and Javier Gardeazabal. 2003. "The Economic Costs of Conflict: A Case Study of the Basque Country ." American Economic Review 93 (1): 113–132.
 
 Here's a step-by-step example demonstrating the usage of the `scmrelax` package:
 

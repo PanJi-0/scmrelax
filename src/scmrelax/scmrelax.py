@@ -288,7 +288,7 @@ def synthetic_control(X, y):
 ## Weight Estimation Using Different Methods
 def fit(X_pre, y_pre, X):
     """
-    Estimate weights using different relaxation methods.
+    Estimate weights using different relaxation methods and standard synthetic control.
 
     This function applies multiple relaxation methods (e.g., synthetic control, L2 relaxation,
     entropy relaxation, and empirical likelihood relaxation) to estimate weights and make predictions.
