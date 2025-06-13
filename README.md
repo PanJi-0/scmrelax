@@ -10,7 +10,7 @@ This python package implements the SCM-relaxation estimator for synthetic contro
 
 The current package is sufficient to replicate all empirical results in the paper. 
 
-Documentation is provided [here]().
+Documentation is provided [here](https://scmrelax.readthedocs.io/en/latest/).
 ## Installation
 
 ```bash
