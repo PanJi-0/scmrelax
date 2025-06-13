@@ -307,7 +307,7 @@ def fit(X_pre, y_pre, X, solver=None):
     
     solver : str, optional, default=None
         The solver to use for optimization problems in the relaxation methods. If not provided,
-        the default solver 'ECOS' is used. Supported solvers depend on the CVXPY library.
+        the default solver 'SCS' is used. Supported solvers depend on the CVXPY library.
 
     Returns
     -------
@@ -353,7 +353,7 @@ def fit(X_pre, y_pre, X, solver=None):
     if solver is not None:
         cp.settings.default_solver = solver
     else:
-        cp.settings.default_solver = 'ECOS'
+        cp.settings.default_solver = 'SCS'
     # SCM weights
     w_scm = synthetic_control(X_pre, y_pre)
     results['scm'] = {
