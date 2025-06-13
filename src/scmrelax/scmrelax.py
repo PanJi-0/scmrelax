@@ -304,6 +304,10 @@ def fit(X_pre, y_pre, X, solver=None):
 
     X : ndarray of shape (n_samples, n_features)
         Post-treatment input data matrix (control units).
+    
+    solver : str, optional, default=None
+        The solver to use for optimization problems in the relaxation methods. If not provided,
+        the default solver 'ECOS' is used. Supported solvers depend on the CVXPY library.
 
     Returns
     -------
