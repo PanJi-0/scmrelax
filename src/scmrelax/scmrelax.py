@@ -75,7 +75,7 @@ class RelaxedBalancingCV(BaseEstimator, RegressorMixin):
             cp.pnorm(X.T @ (X @ w - y) / T + gam * np.ones(J), p='inf')
         )
         problem = cp.Problem(objective, constraints)
-        problem.solve(solver=cp.MOSEK, verbose=False)
+        problem.solve(verbose=False)
         return problem.value * 1.01     # 1% tolerance for numerical stability
 
     def _get_tau_upper_limit(self, X, y):
@@ -87,7 +87,7 @@ class RelaxedBalancingCV(BaseEstimator, RegressorMixin):
             cp.pnorm(X.T @ (X @ w - y) / T + gam * np.ones(J), p='inf')
         )
         problem = cp.Problem(objective)
-        problem.solve(solver=cp.MOSEK, verbose=False)
+        problem.solve(verbose=False)
         return problem.value * 1.01     # 1% tolerance to make sure simple averages are feasible
 
     def _check_feas_for_taus(self, X, y):
@@ -181,11 +181,11 @@ class RelaxedBalancingCV(BaseEstimator, RegressorMixin):
         for val in taus_for_this_fold:
             tau.value = val
             try:
-                problem.solve(solver=cp.MOSEK, verbose=False)
+                problem.solve(verbose=False)
             except cp.error.SolverError:
                 # If MOSEK fails, we can try forcing it to solve the dual
                 # (which is actually the primal in this case)
-                problem.solve(solver=cp.MOSEK, mosek_params=self._mosek_params, verbose=False)
+                problem.solve(verbose=False)
             w_estimates.append(w.value)
         # shape (J, n_taus_for_this_fold)
         w_estimates = np.array(w_estimates).T
@@ -211,11 +211,11 @@ class RelaxedBalancingCV(BaseEstimator, RegressorMixin):
         problem = cp.Problem(objective, constraints)
 
         try:
-            problem.solve(solver=cp.MOSEK, verbose=False)
+            problem.solve(verbose=False)
         except cp.error.SolverError:
             # If MOSEK fails, we can try forcing it to solve the dual
             # (which is actually the primal in this case)
-            problem.solve(solver=cp.MOSEK, mosek_params=self._mosek_params, verbose=False)
+            problem.solve(verbose=False)
         self.coef_ = w.value
 
     def fit(self, X, y):
@@ -282,11 +282,12 @@ def synthetic_control(X, y):
     objective = cp.Minimize(cp.norm(y-X@w, 2))
     constraints = [cp.sum(w)==1, w>=0]
     problem = cp.Problem(objective, constraints)
-    problem.solve(solver=cp.MOSEK, verbose=False)
+    
+    problem.solve(verbose=False)
     return w.value
 
 ## Weight Estimation Using Different Methods
-def fit(X_pre, y_pre, X):
+def fit(X_pre, y_pre, X, solver=None):
     """
     Estimate weights using different relaxation methods and standard synthetic control.
 
@@ -345,6 +346,10 @@ def fit(X_pre, y_pre, X):
     """
     results = {}
     
+    if solver is not None:
+        cp.settings.default_solver = solver
+    else:
+        cp.settings.default_solver = 'ECOS'
     # SCM weights
     w_scm = synthetic_control(X_pre, y_pre)
     results['scm'] = {
