@@ -25,6 +25,9 @@ extensions = [
 autoapi_dirs = ["../src"]
 mathjax_path = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
 
+# MyST-NB configuration to disable notebook execution
+jupyter_execute_notebooks = "off"  # Do not execute notebooks
+
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
