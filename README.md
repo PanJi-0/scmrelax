@@ -14,7 +14,7 @@ Documentation is provided [here](https://scmrelax.readthedocs.io/en/latest/).
 ## Installation
 
 ```bash
-$ $ pip install git+https://github.com/PanJi-0/scmrelax.git
+$ pip install git+https://github.com/PanJi-0/scmrelax.git
 ```
 
 ## Usage
