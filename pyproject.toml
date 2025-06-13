@@ -19,6 +19,9 @@ jupyter = ">=1.1.1"
 matplotlib = ">=3.10.3"
 seaborn = ">=0.13.2"
 pandas = ">=2.3.0"
+myst-nb = "^1.2.0"
+sphinx-autoapi = "^3.6.0"
+sphinx-rtd-theme = "^3.0.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
