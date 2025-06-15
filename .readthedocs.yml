@@ -21,3 +21,7 @@ build:
 # Build documentation in the "docs/" directory with Sphinx
 sphinx:
   configuration: docs/conf.py
+
+# Prevent execution of notebooks
+jupyter:
+  execute_notebooks: off
