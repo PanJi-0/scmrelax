@@ -23,6 +23,9 @@ extensions = [
 ]
 autoapi_dirs = ["../src"]
 
+# Configeration for MyST-NB to disable the execution of notebooks
+nb_execution_mode = "off" # Disable execution of notebooks
+
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
