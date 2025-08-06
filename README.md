@@ -1,12 +1,12 @@
 # scmrelax
 
-Estimate combination weights in synthetic control methods by relaxed balancing approaches, including L2, EL and Entropy-SCM-Relaxation.
+Estimate combination weights by relaxation approaches to synthetic control, including L2, EL and entropy-SCM-Relaxation.
 
 ## Introduction
 
 This python package implements the SCM-relaxation estimator for synthetic control in
 
-- Liao, Shi and Zheng (2025): "A Relaxation Approach to Synthetic Control"[arxiv](https://arxiv.org/abs/2508.01793)
+- Liao, Shi and Zheng (2025): "A Relaxation Approach to Synthetic Control" ([arxiv](https://arxiv.org/abs/2508.01793))
 
 The current package is sufficient to replicate all empirical results in the paper. 
 
@@ -46,7 +46,66 @@ results = scmrelax.fit(X_pre, y_pre, X)
 for method, res in results.items():
     print(f"{method} weights:", res['weights'])
     print(f"{method} predictions:", res['predictions'])
-```       
+```
+## Replication of empirical results
+We replicate the empirical application in Liao, Shi and Zheng (2025) using the current package. In docs file set, you can find the following files 
+```
+.
+├── GDP_application_2016.ipynb     # Main analysis notebook for 2016 Brexit referendum
+├── GDP_application_2020.ipynb     # Robustness check analysis notebook
+├── balanced_GDP_data.csv          # Balanced GDP dataset
+```
+### Data Description
+
+The analysis uses real GDP data from the [CEIC](https://www.ceicdata.com/en) database. The dataset `balanced_GDP_data.csv` contains:
+
+- Quaterly GDP data for multiple countries
+- Time period: 2002Q4-2024Q2
+- Treatment time: 2016Q3
+- Treatment unit: United Kingdom
+- Donor pool: Other countries in the dataset
+
+### Usage
+
+1. Required Python packages:
+   - pandas
+   - numpy
+   - scipy
+   - matplotlib
+   - jupyter
+   - scmrelax
+
+2. To run the analysis:
+   - Open `GDP_application_2016.ipynb` in Jupyter Notebook
+   - Execute cells sequentially
+  
+3. To run the robustness check:
+   - Open `GDP_application_2020.ipynb` in Jupyter Notebook
+   - Execute cells sequentially
+
+### Results
+
+The analysis examines the impact of the 2016 Brexit referendum on the UK's GDP growth rate using SCM and SCM-relaxation estimators. We also use the fitted growth rates to extrapolate the GDP and estimate the ATEs. Key results include:
+
+- Comparison of estimated weights between SCM and L2-SCM-relaxation
+- Average treatment effect of Brexit on the UK's GDP as a percentage of the UK's total GDP after 2016Q3
+- Robustness checks when we specify the treatment time as 2020Q1
+
+## Citation
+
+If you find the code and data useful, please consider citing:
+
+```
+@misc{liao2025relaxationapproachsyntheticcontrol,
+      title={A Relaxation Approach to Synthetic Control}, 
+      author={Chengwang Liao and Zhentao Shi and Yapeng Zheng},
+      year={2025},
+      eprint={2508.01793},
+      archivePrefix={arXiv},
+      primaryClass={econ.EM},
+      url={https://arxiv.org/abs/2508.01793}, 
+}
+```
 
 ## License
 
